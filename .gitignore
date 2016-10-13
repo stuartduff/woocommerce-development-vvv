@@ -1,0 +1,6 @@
+# hiding some stuff - @stuartduff
+.DS_Store
+ssh
+
+# hide provisioned sites /htdocs folders
+/htdocs
