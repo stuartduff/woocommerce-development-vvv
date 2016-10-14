@@ -8,27 +8,27 @@ then
   mkdir htdocs
   cd htdocs
 
-	# **
-	# Database
-	# **
+  # **
+  # Database
+  # **
 
-	# Create the database over again.
-	echo "(Re-)Creating database 'woocommerce_development'...\n"
-	mysql -u root --password=root -e "DROP DATABASE IF EXISTS \`woocommerce_development\`"
-	mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS \`woocommerce_development\`"
-	mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON \`woocommerce_development\`.* TO wp@localhost IDENTIFIED BY 'wp';"
+  # Create the database over again.
+  echo "(Re-)Creating database 'woocommerce_development'...\n"
+  mysql -u root --password=root -e "DROP DATABASE IF EXISTS \`woocommerce_development\`"
+  mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS \`woocommerce_development\`"
+  mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON \`woocommerce_development\`.* TO wp@localhost IDENTIFIED BY 'wp';"
 
-	# **
-	# WordPress
-	# **
+  # **
+  # WordPress
+  # **
 
-	# Download WordPress
-	echo "Downloading WordPress in htdocs...\n"
-	wp core download --locale=en_US --allow-root
+  # Download WordPress
+  echo "Downloading WordPress in htdocs...\n"
+  wp core download --locale=en_US --allow-root
 
-	# Install WordPress.
-	echo "Creating wp-config in htdocs...\n"
-	wp core config --dbname='woocommerce_development' --dbuser=wp --dbpass=wp --dbhost='localhost' --dbprefix=wp_ --locale=en_US --allow-root --extra-php <<PHP
+  # Install WordPress.
+  echo "Creating wp-config in htdocs...\n"
+  wp core config --dbname='woocommerce_development' --dbuser=wp --dbpass=wp --dbhost='localhost' --dbprefix=wp_ --locale=en_US --allow-root --extra-php <<PHP
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_DISPLAY', false );
 define( 'WP_DEBUG_LOG', true );
@@ -36,30 +36,30 @@ define( 'SCRIPT_DEBUG', true );
 define( 'JETPACK_DEV_DEBUG', true );
 PHP
 
-	# Install into DB
-	echo 'Installing WordPress...\n'
-	wp core install --url=local.woocommerce.dev --title='WooCommerce' --admin_user=admin --admin_password=password --admin_email=changme@changeme.com --allow-root
+  # Install into DB
+  echo 'Installing WordPress...\n'
+  wp core install --url=local.woocommerce.dev --title='WooCommerce' --admin_user=admin --admin_password=password --admin_email=changme@changeme.com --allow-root
 
   # Update Blog Description option
-	echo 'Updating tagline...\n'
+  echo 'Updating tagline...\n'
   wp option update blogdescription 'WooCommerce Development VVV' --allow-root
 
-	# **
-	# Your themes
-	# **
-	echo 'Installing themes...\n'
+  # **
+  # Your themes
+  # **
+  echo 'Installing themes...\n'
   wp theme install storefront --activate --allow-root
 
   # Delete unrequired themes
   echo "Deleting unrequired default themes..."
-	wp theme delete twentyfifteen  --allow-root
-	wp theme delete twentyfourteen --allow-root
+  wp theme delete twentyfifteen  --allow-root
+  wp theme delete twentyfourteen --allow-root
 
   # **
-	# # Create pages
-	# **
-	echo "Creating pages for the Storefront theme..."
-	wp post create --post_type=page --post_title='Homepage' --post_status=publish --post_author=1 --allow-root
+  # # Create pages
+  # **
+  echo "Creating pages for the Storefront theme..."
+  wp post create --post_type=page --post_title='Homepage' --post_status=publish --post_author=1 --allow-root
   wp post create --post_type=page --post_title='Blog' --post_status=publish --post_author=1 --allow-root
 
   # **
@@ -79,9 +79,9 @@ PHP
   wp option update page_for_posts 4 --allow-root
 
   # **
-	# # Create Menus
-	# **
-	echo "Create Custom WordPress Primary Menu..."
+  # # Create Menus
+  # **
+  echo "Create Custom WordPress Primary Menu..."
   wp menu create 'Primary Menu' --allow-root
 
   echo "Assign primary menu to the storefront themes primary location..."
@@ -92,10 +92,10 @@ PHP
   wp menu item add-post primary-menu 4 --title='Blog' --allow-root
 
   # **
-	# # Plugins
-	# **
+  # # Plugins
+  # **
 
-	echo 'Installing plugins...\n'
+  echo 'Installing plugins...\n'
   wp plugin install woocommerce --activate --allow-root
   wp plugin install wordpress-importer --activate --allow-root
   wp plugin install homepage-control --activate --allow-root
@@ -129,57 +129,57 @@ PHP
 
   git clone --recursive https://github.com/woocommerce/woocommerce-beta-tester.git    wp-content/plugins/woocommerce-beta-tester
 
-	# **
-	# Unit Data
-	# **
+  # **
+  # Unit Data
+  # **
 
-	# Import the WordPress unit data.
-	echo 'Installing unit test data...\n'
-	curl -O https://wpcom-themes.svn.automattic.com/demo/theme-unit-test-data.xml
+  # Import the WordPress unit data.
+  echo 'Installing unit test data...\n'
+  curl -O https://wpcom-themes.svn.automattic.com/demo/theme-unit-test-data.xml
   wp import theme-unit-test-data.xml --authors=create --allow-root
-	rm theme-unit-test-data.xml
+  rm theme-unit-test-data.xml
 
-	# Import the WooCommerce unit data.
-	echo 'Installing WooCommerce dummy product data...\n'
-	curl -O https://raw.githubusercontent.com/woocommerce/woocommerce/master/dummy-data/dummy-data.xml
-	wp import dummy-data.xml --authors=create --allow-root
-	rm dummy-data.xml
+  # Import the WooCommerce unit data.
+  echo 'Installing WooCommerce dummy product data...\n'
+  curl -O https://raw.githubusercontent.com/woocommerce/woocommerce/master/dummy-data/dummy-data.xml
+  wp import dummy-data.xml --authors=create --allow-root
+  rm dummy-data.xml
 
-	# Replace any urls from the WordPress unit data
-	echo 'Adjusting urls in database...\n'
-	wp search-replace 'wpthemetestdata.wordpress.com' 'local.woocommerce.dev' --skip-columns=guid --allow-root
+  # Replace any urls from the WordPress unit data
+  echo 'Adjusting urls in database...\n'
+  wp search-replace 'wpthemetestdata.wordpress.com' 'local.woocommerce.dev' --skip-columns=guid --allow-root
 
   # Update the sites permalink structure
   echo 'Update permalink structure...\n'
   wp option update permalink_structure '/%postname%/' --allow-root
   wp rewrite flush --allow-root
 
-	cd ..
+  cd ..
 
 else
 
-	cd htdocs/
+  cd htdocs/
 
-	# Updates
-	if $(wp core is-installed --allow-root); then
+  # Updates
+  if $(wp core is-installed --allow-root); then
 
-		# Update WordPress.
-		echo "Updating WordPress for WooCommerce Development VVV...\n"
-		wp core update --allow-root
-		wp core update-db --allow-root
+    # Update WordPress.
+    echo "Updating WordPress for WooCommerce Development VVV...\n"
+    wp core update --allow-root
+    wp core update-db --allow-root
 
-		# Update Plugins
-		echo "Updating plugins for WooCommerce Development VVV...\n"
-		wp plugin update --all --allow-root
+    # Update Plugins
+    echo "Updating plugins for WooCommerce Development VVV...\n"
+    wp plugin update --all --allow-root
 
-		# **
-		# Your themes
-		# **
-		echo "Updating themes for WooCommerce Development VVV...\n"
+    # **
+    # Your themes
+    # **
+    echo "Updating themes for WooCommerce Development VVV...\n"
     wp theme update --all --allow-root
 
-	fi
+  fi
 
-	cd ..
+  cd ..
 
 fi
