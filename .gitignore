@@ -2,5 +2,6 @@
 .DS_Store
 ssh
 
-# hide provisioned sites /htdocs folders
-/htdocs
+# hide provisioned sites /public_html folder
+/public_html
+/log
