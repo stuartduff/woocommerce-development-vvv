@@ -23,7 +23,7 @@ if [[ ! -d "${VVV_PATH_TO_SITE}/public_html" ]]; then
 
   echo "Creating directory public_html for WooCommerce Development...\n"
   mkdir -p ${VVV_PATH_TO_SITE}/public_html
-  cd ${VVV_PATH_TO_SITE}
+  cd ${VVV_PATH_TO_SITE}/public_html
 
   # **
   # WordPress
