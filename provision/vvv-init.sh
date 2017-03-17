@@ -1,34 +1,48 @@
-echo "\nSetting Up WooCommerce Development Enviroment\n"
+#!/usr/bin/env bash
+# Provision WooCommerce Development
 
-# If we delete htdocs, let's just start over.
-if [ ! -d "htdocs" ]
+echo "\nSetting Up WooCommerce Development Environment\n"
+
+# If we delete public_html, let's just start over.
+if [ ! -d "public_html" ]
 then
 
-  echo "Creating directory htdocs for WooCommerce Development...\n"
-  mkdir htdocs
-  cd htdocs
+  echo "Creating directory public_html for WooCommerce Development...\n"
+  mkdir public_html
+  cd public_html
 
   # **
   # Database
   # **
 
   # Create the database over again.
-  echo "(Re-)Creating database 'woocommerce_development'...\n"
-  mysql -u root --password=root -e "DROP DATABASE IF EXISTS \`woocommerce_development\`"
-  mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS \`woocommerce_development\`"
-  mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON \`woocommerce_development\`.* TO wp@localhost IDENTIFIED BY 'wp';"
+  echo -e "\nCreating database 'woocommerce_development' (if it's not already there)"
+  mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS woocommerce_development"
+  mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON woocommerce_development.* TO wp@localhost IDENTIFIED BY 'wp';"
+  echo -e "\n DB operations done.\n\n"
+
+  # Nginx Logs
+  mkdir -p ${VVV_PATH_TO_SITE}/log
+  touch ${VVV_PATH_TO_SITE}/log/error.log
+  touch ${VVV_PATH_TO_SITE}/log/access.log
 
   # **
   # WordPress
   # **
 
   # Download WordPress
-  echo "Downloading WordPress in htdocs...\n"
+  echo "Downloading WordPress into public_html...\n"
   wp core download --locale=en_US --allow-root
 
   # Install WordPress.
-  echo "Creating wp-config in htdocs...\n"
+  echo "Creating wp-config in public_html...\n"
   wp core config --dbname='woocommerce_development' --dbuser=wp --dbpass=wp --dbhost='localhost' --dbprefix=wp_ --locale=en_US --allow-root --extra-php <<PHP
+// Match any requests made via xip.io.
+if ( isset( \$_SERVER['HTTP_HOST'] ) && preg_match('/^(local.woocommerce.)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(.xip.io)\z/', \$_SERVER['HTTP_HOST'] ) ) {
+    define( 'WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] );
+    define( 'WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] );
+}
+
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_DISPLAY', false );
 define( 'WP_DEBUG_LOG', true );
@@ -158,7 +172,7 @@ PHP
 
 else
 
-  cd htdocs/
+  cd public_html/
 
   # Updates
   if $(wp core is-installed --allow-root); then
