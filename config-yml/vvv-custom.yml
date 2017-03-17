@@ -16,7 +16,7 @@ sites:
 
   # The woocommerce-develop configuration is useful for contributing to WooCommerce.
   # Read more on custom sites https://varyingvagrantvagrants.org/docs/en-US/vvv-config/
-  wordpress-develop:
+  wooocommerce-develop:
     repo: https://github.com/stuartduff/woocommerce-development-vvv.git
     branch: 1-vvv-2-compatibility
     hosts:
