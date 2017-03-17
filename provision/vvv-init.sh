@@ -30,7 +30,7 @@ if [[ ! -d "${VVV_PATH_TO_SITE}/public_html" ]]; then
   # **
 
   # Download WordPress
-  echo "Downloading WordPress into public_html...\n"
+  echo "Downloading the latest version of WordPress into the public_html folder...\n"
   wp core download --locale=en_US --allow-root
 
   # Install WordPress.
@@ -171,7 +171,7 @@ PHP
 
 else
 
-  cd public_html/
+  cd ${VVV_PATH_TO_SITE}/public_html
 
   # Updates
   if $(wp core is-installed --allow-root); then
