@@ -3,28 +3,27 @@
 
 echo "\nSetting Up WooCommerce Development Environment\n"
 
+# **
+# Database
+# **
+
+# Create the database over again.
+echo -e "\nCreating database 'woocommerce_development' (if it's not already there)"
+mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS woocommerce_development"
+mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON woocommerce_development.* TO wp@localhost IDENTIFIED BY 'wp';"
+echo -e "\n DB operations done.\n\n"
+
+# Nginx Logs
+mkdir -p ${VVV_PATH_TO_SITE}/log
+touch ${VVV_PATH_TO_SITE}/log/error.log
+touch ${VVV_PATH_TO_SITE}/log/access.log
+
 # If we delete public_html, let's just start over.
-if [ ! -d "public_html" ]
-then
+if [[ ! -d "${VVV_PATH_TO_SITE}/public_html" ]]; then
 
   echo "Creating directory public_html for WooCommerce Development...\n"
-  mkdir public_html
-  cd public_html
-
-  # **
-  # Database
-  # **
-
-  # Create the database over again.
-  echo -e "\nCreating database 'woocommerce_development' (if it's not already there)"
-  mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS woocommerce_development"
-  mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON woocommerce_development.* TO wp@localhost IDENTIFIED BY 'wp';"
-  echo -e "\n DB operations done.\n\n"
-
-  # Nginx Logs
-  mkdir -p ${VVV_PATH_TO_SITE}/log
-  touch ${VVV_PATH_TO_SITE}/log/error.log
-  touch ${VVV_PATH_TO_SITE}/log/access.log
+  mkdir -p ${VVV_PATH_TO_SITE}/public_html
+  cd ${VVV_PATH_TO_SITE}
 
   # **
   # WordPress
