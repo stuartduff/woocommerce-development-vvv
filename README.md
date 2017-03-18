@@ -2,11 +2,28 @@
 
 WooCommerce Development VVV is an [auto-sitesetup](https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Auto-site-Setup) designed to be used with [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV) for developing or testing [WooCommerce](https://woocommerce.com) focused plugins and themes.
 
+Supports VVV 2.0 and above only.
+
 ## Installing:
 
 1. Clone this repo to your VVV/`www` folder
-2. Update to a [release tag](https://github.com/stuartduff/woocommerce-development-vvv/releases) to keep stable
-3. If your Vagrant is running, from the Vagrant directory run `vagrant halt` followed by `vagrant up --provision`.
+2. Update to the latest [release tag](https://github.com/stuartduff/woocommerce-development-vvv/releases) to keep stable
+3. Copy the included `/config-yml/vvv-custom.yml` file to your root vagrant install directory for a quick default setup. If you are already using an existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file read the VVV Custom YML file content section below befor carrying out step 4 and instead of copying the quickstart file over.
+4. If your Vagrant is running, from the Vagrant directory run `vagrant halt` followed by `vagrant up --provision`.
+
+### VVV Custom YML file content.
+
+If you are already using a custom [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) on your VVV install you can add these details below to your existing file to provision the WooCommerce development VVV instance.
+
+
+```
+# The woocommerce-develop configuration is useful for contributing to WooCommerce.
+# Read more on custom sites https://varyingvagrantvagrants.org/docs/en-US/vvv-config/
+wooocommerce-develop:
+  repo: https://github.com/stuartduff/woocommerce-development-vvv.git
+  hosts:
+    - local.woocommerce.dev
+```
 
 Now you can sit back and relax as provisioning may take a while to complete.
 
@@ -51,6 +68,9 @@ You can see which plugins are installed and activated from looking at the `vvv-i
 The site has the official WordPress theme review [theme unit test data](https://codex.wordpress.org/Theme_Unit_Test) installed for blog posts etc. For WooCommerce the official product [dummy data](https://github.com/woocommerce/woocommerce/blob/master/dummy-data/dummy-data.xml) is installed.
 
 ## Changelog
+
+**2.0.0 - 18/03/17**
+* Updated to function with VVV v2.0 and above.
 
 **1.0.0 - 13/10/16**
 * Initial Release - first version VVV released.
