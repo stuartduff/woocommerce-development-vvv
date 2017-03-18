@@ -6,15 +6,9 @@ Supports VVV 2.0 and above only.
 
 ## Installing:
 
-1. Clone this repo to your VVV/`www` folder
-2. Update to the latest [release tag](https://github.com/stuartduff/woocommerce-development-vvv/releases) to keep stable
-3. Copy the included `/config-yml/vvv-custom.yml` file to your root vagrant install directory for a quick default setup. If you are already using an existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file read the VVV Custom YML file content section below befor carrying out step 4 and instead of copying the quickstart file over.
-4. If your Vagrant is running, from the Vagrant directory run `vagrant halt` followed by `vagrant up --provision`.
+Copy the included `/config-yml/vvv-custom.yml` file to your root vagrant install directory for a quick default setup.
 
-### VVV Custom YML file content.
-
-If you are already using a custom [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) on your VVV install you can add these details below to your existing file to provision the WooCommerce development VVV instance.
-
+If you are already using an existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file for your VVV installation add the code below to your existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file instead of copying the quickstart file over to your install.
 
 ```
 # The woocommerce-develop configuration is useful for contributing to WooCommerce.
@@ -24,6 +18,8 @@ wooocommerce-develop:
   hosts:
     - local.woocommerce.dev
 ```
+
+If your Vagrant is running, from the Vagrant directory run `vagrant halt` followed by `vagrant up --provision`.
 
 Now you can sit back and relax as provisioning may take a while to complete.
 
