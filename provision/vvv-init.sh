@@ -66,7 +66,6 @@ PHP
   # Delete unrequired themes
   echo "Deleting unrequired default themes..."
   wp theme delete twentyfifteen  --allow-root
-  wp theme delete twentyfourteen --allow-root
 
   # **
   # # Create pages
