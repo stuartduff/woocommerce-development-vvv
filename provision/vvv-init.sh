@@ -109,6 +109,7 @@ PHP
 
   echo 'Installing plugins...\n'
   wp plugin install woocommerce --activate --allow-root
+  wp plugin install wc-invoice-gateway --allow-root
   wp plugin install wordpress-importer --activate --allow-root
   wp plugin install homepage-control --activate --allow-root
   wp plugin install customizer-reset-by-wpzoom --activate --allow-root
