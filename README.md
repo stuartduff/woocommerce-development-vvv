@@ -6,9 +6,9 @@ Supports VVV 2.0 and above only.
 
 ## Installing:
 
-Copy the included `/config-yml/vvv-custom.yml` file to your root vagrant install directory for a quick default setup.
+If you do not have an existing `vvv-custom.yml` file added to you Vagrant setup then you can copy the example `vvv-custom.yml` which can be found in the `/config-yml/` folder into the root directory of your Vagrant install.
 
-If you are already using an existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file for your VVV installation add the code below to your existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file instead of copying the quickstart file over to your install.
+If you are already using an existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file for your VVV installation simply add the code below to your existing [vvv-custom.yml](https://varyingvagrantvagrants.org/docs/en-US/vvv-config/) file instead of copying the quickstart file over to your install.
 
 ```
 # The woocommerce-develop configuration is useful for contributing to WooCommerce.
