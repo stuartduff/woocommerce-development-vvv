@@ -112,20 +112,20 @@ PHP
   wp plugin install wordpress-importer --activate --allow-root
   wp plugin install homepage-control --activate --allow-root
   wp plugin install customizer-reset-by-wpzoom --activate --allow-root
-  wp plugin install user-switching  --activate --allow-root
-  wp plugin install regenerate-thumbnails  --activate --allow-root
-  wp plugin install wp-mail-logging  --allow-root
-  wp plugin install wp-crontrol  --activate --allow-root
-  wp plugin install loco-translate  --allow-root
+  wp plugin install user-switching --activate --allow-root
+  wp plugin install regenerate-thumbnails --activate --allow-root
+  wp plugin install wp-mail-logging --allow-root
+  wp plugin install wp-crontrol --activate --allow-root
+  wp plugin install loco-translate --allow-root
   wp plugin install query-monitor --allow-root
   wp plugin install jetpack --activate --allow-root
   wp plugin install developer --activate --allow-root
-  wp plugin install debug-bar  --activate --allow-root
-  wp plugin install debug-bar-console  --activate --allow-root
-  wp plugin install debug-bar-cron  --activate --allow-root
-  wp plugin install debug-bar-extender  --activate --allow-root
-  wp plugin install rewrite-rules-inspector  --activate --allow-root
-  wp plugin install log-deprecated-notices   --allow-root
+  wp plugin install debug-bar --activate --allow-root
+  wp plugin install debug-bar-console --activate --allow-root
+  wp plugin install debug-bar-cron --activate --allow-root
+  wp plugin install debug-bar-extender --activate --allow-root
+  wp plugin install rewrite-rules-inspector --activate --allow-root
+  wp plugin install log-deprecated-notices --allow-root
   wp plugin install log-viewer --allow-root
   wp plugin install wordpress-beta-tester --allow-root
 
@@ -146,7 +146,7 @@ PHP
   # **
 
   # Import the WordPress unit data.
-  echo 'Installing unit test data...\n'
+  echo 'Installing WordPress theme unit test data...\n'
   curl -O https://wpcom-themes.svn.automattic.com/demo/theme-unit-test-data.xml
   wp import theme-unit-test-data.xml --authors=create --allow-root
   rm theme-unit-test-data.xml
@@ -165,6 +165,8 @@ PHP
   echo 'Update permalink structure...\n'
   wp option update permalink_structure '/%postname%/' --allow-root
   wp rewrite flush --allow-root
+
+  echo 'Finished Setting Up WooCommerce Development Environment, Enjoy!'
 
   cd ..
 
