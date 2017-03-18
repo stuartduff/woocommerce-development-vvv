@@ -1,4 +1,4 @@
-# WooCommerce Development VVV
+# WooCommerce Development VVV
 
 WooCommerce Development VVV is an [auto-sitesetup](https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Auto-site-Setup) designed to be used with [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV) for developing or testing [WooCommerce](https://woocommerce.com) focused plugins and themes.
 
