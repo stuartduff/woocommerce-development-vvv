@@ -18,7 +18,6 @@ sites:
   # Read more on custom sites https://varyingvagrantvagrants.org/docs/en-US/vvv-config/
   wooocommerce-develop:
     repo: https://github.com/stuartduff/woocommerce-development-vvv.git
-    branch: 1-vvv-2-compatibility
     hosts:
       - local.woocommerce.dev
 
