@@ -51,7 +51,7 @@ PHP
 
   # Install into DB
   echo 'Installing WordPress...\n'
-  wp core install --url=local.woocommerce.dev --title='WooCommerce' --admin_user=admin --admin_password=password --admin_email=changme@changeme.com --allow-root
+  wp core install --url={vvv_hosts} --title='WooCommerce' --admin_user=admin --admin_password=password --admin_email=changme@changeme.com --allow-root
 
   # Update Blog Description option
   echo 'Updating tagline...\n'
